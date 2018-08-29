@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container content article">
+    <h2>
+        {{ article.titre }}
+    </h2>
+        <p id="contenu-article">
+            {{ article.contenu }}
+        </p>
+        <p>
+            Par {{ article.auteur }} le  {{ article.date_pub }}.
+        </p>
+</div>
+<script>
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+let cont = document.getElementById('contenu-article').innerHTML;
+cont = cont.replaceAll('\n', '</br>')
+document.getElementById('contenu-article').innerHTML = cont
+</script>
+{% endblock %}

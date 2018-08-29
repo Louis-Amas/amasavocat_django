@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block content %}
+    <h1>La</h1>
+
+    <div class="container content">
+        <div class="list-group">
+        {% for article in articles %}
+
+            <a href="/article/{{ article.id }}" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1">
+                    {{ article.titre }}
+                </h4>
+                <p>
+                    {{ article.auteur }}
+                </p>
+            </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
