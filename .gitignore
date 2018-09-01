@@ -1,4 +1,5 @@
-.venv
-.lib
-.bin
+venv
+lib
+bin
+include
 secret
