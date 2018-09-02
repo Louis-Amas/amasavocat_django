@@ -28,7 +28,6 @@ def description(request):
 class ArticlesListView(ListView):
 
     model = Article
-
     context_object_name = 'articles'
     template_name = "articles/list_view.html"
 
