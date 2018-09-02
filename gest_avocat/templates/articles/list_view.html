@@ -1,8 +1,6 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 {% block content %}
-    <h1>La</h1>
-
     <div class="container content">
         <div class="list-group">
         {% for article in articles %}
@@ -19,6 +17,18 @@
             </a>
         {% endfor %}
         </div>
+        <nav aria-label="page navigation">
+          <ul class="pagination">
+              {% if page_obj.has_previous %}
+
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Page précedente</a></li>
+
+              {% endif %}
+              {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Page suivante</a></li>
+              {% endif %}
+          </ul>
+        </nav>
     </div>
 
 {% endblock %}

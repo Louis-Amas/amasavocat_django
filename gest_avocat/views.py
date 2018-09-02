@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 from .models import Article
 from django.views.generic import ListView, DetailView
@@ -31,8 +32,21 @@ class ArticlesListView(ListView):
     context_object_name = 'articles'
     template_name = "articles/list_view.html"
 
+    paginate_by = 10
+
     def get_context_data(self, *, object_list=None, **kwargs):
-        return {"articles": list(self.model.objects.all().values())[::-1]}
+        context = super(ArticlesListView, self).get_context_data(**kwargs)
+        articles = list(self.model.objects.all().values())[::-1]
+        paginator = Paginator(articles, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            list_articles = paginator.page(page)
+        except PageNotAnInteger:
+            list_articles = paginator.page(1)
+        except EmptyPage:
+            list_articles = paginator.page(1)
+        context['articles'] = list_articles
+        return context
 
 
 def articleDetailView(request, pk):
