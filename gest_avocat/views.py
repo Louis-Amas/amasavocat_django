@@ -16,6 +16,8 @@ def contact(request):
 def honoraires(request):
     return render(request, "pages/honoraires.html")
 
+def enfant(request):
+    return render(request, "pages/enfant.html")
 
 def levothyrox(request):
     return render(request, "pages/levothyrox.html")
